@@ -79,8 +79,14 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([
+        ("password".to_owned(), "zzz111".to_owned()),
+    ]));
+    pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([
+        (keys::OPTION_HIDE_NETWORK_SETTINGS.to_owned(), "Y".to_owned()),
+        (keys::OPTION_HIDE_SERVER_SETTINGS.to_owned(), "Y".to_owned()),
+        (keys::OPTION_HIDE_PROXY_SETTINGS.to_owned(), "Y".to_owned()),
+    ]));
 }
 
 #[cfg(target_os = "android")]
@@ -117,8 +123,8 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rs-ny.rustdesk.com"];
-pub const RS_PUB_KEY: &str = "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=";
+pub const RENDEZVOUS_SERVERS: &[&str] = &["47.98.127.196"];
+pub const RS_PUB_KEY: &str = "joEDsw0KKtNE91z5+j3LegCvpjmzWPWDCBRLKAzkF+M=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;
